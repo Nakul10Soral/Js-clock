@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="clk-cir">
+        <div class="clk-hands">
+            <div class="hours clk-hands"></div>
+            <div class="mins clk-hands"></div>
+            <div class="secs clk-hands"></div>
+        </div>
+    </div>
+    <h1 id="digi"></h1>
+    
+
+
+    <script>
+        const sechand = document.querySelector('.secs')
+        const minhand = document.querySelector('.mins')
+        const hhand = document.querySelector('.hours')
+        function setdate() {
+            const now = new Date;
+            const secs = now.getSeconds();
+            const mint = now.getMinutes();
+            let hor = now.getHours();
+                if (hor > 12) {
+                    hor = hor -12
+                }
+                else{
+                    return hor
+                }
+        
+            const secdeg = ((secs/60)*360) + 180;
+            const mindeg = ((mint/60)*360) + 180;
+            const hourdeg = ((hor/12)*360) +180;
+            sechand.style.transform = `rotate(${secdeg}deg)`
+            minhand.style.transform = `rotate(${mindeg}deg)`
+            hhand.style.transform = `rotate(${hourdeg}deg)`
+            console.log(`${hor}:${mint}:${secs}`);
+            document.getElementById("digi").innerHTML = `${hor}:${mint}:${secs}`;
+        }
+        setInterval(setdate,1000);
+    </script>
+</body>
+</html>
